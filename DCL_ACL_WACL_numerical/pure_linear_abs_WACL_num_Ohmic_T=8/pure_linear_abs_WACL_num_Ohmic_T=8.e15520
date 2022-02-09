@@ -1,0 +1,2 @@
+rm: cannot remove ‘*’: No such file or directory
+/var/spool/torque/mom_priv/jobs/15520.pippen.cchem.berkeley.edu.SC: line 24:  5111 Segmentation fault      ./md_run.exe
