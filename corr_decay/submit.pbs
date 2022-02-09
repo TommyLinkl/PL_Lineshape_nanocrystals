@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#PBS -N MO_Ohmic_T=4
+#PBS -l nodes=1:ppn=16:turtle
+#PBS -q batch
+#PBS -m abe
+#PBS -M tommy_lin@berkeley.edu
+
+source /opt/intel/oneapi/setvars.sh
+
+cd $PBS_O_WORKDIR
+baseDir=$PBS_O_WORKDIR
+echo $HOSTNAME
+echo $baseDir
+scratchDir="/scratch/tommylin/analytical/MO_Ohmic_T=4"
+
+mkdir -p $scratchDir
+cd $scratchDir
+rm -r * 
+cd $baseDir
+cp -r *.py $scratchDir
+
+cd $scratchDir
+python3 MO_Ohmic_T=4.py
+cp -r * $baseDir
+
