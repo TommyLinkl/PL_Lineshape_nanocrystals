@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -N SK_Ohmic
+#PBS -N oscillating_T\=1
 #PBS -l nodes=1:ppn=16:turtle
 #PBS -q batch
 #PBS -m abe
@@ -12,7 +12,7 @@ cd $PBS_O_WORKDIR
 baseDir=$PBS_O_WORKDIR
 echo $HOSTNAME
 echo $baseDir
-scratchDir="/scratch/tommylin/analytical/SK_Ohmic"
+scratchDir="/scratch/tommylin/analytical/oscillating_T\=1"
 
 mkdir -p $scratchDir
 cd $scratchDir
@@ -21,6 +21,6 @@ cd $baseDir
 cp -r *.py $scratchDir
 
 cd $scratchDir
-python3 SK_Ohmic.py
+python3 E17_oscillating_T\=1.py
 cp -r * $baseDir
 

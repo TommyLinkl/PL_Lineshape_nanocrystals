@@ -17,7 +17,7 @@ def coth(x):
     return (np.exp(x) + np.exp(-x))/(np.exp(x) - np.exp(-x))
 
 def J(omega):
-    return np.exp(-omega)
+    return 2 / PI * np.exp(-omega)
 
 def FQM_Re(omega, time):
     return 0.5 * J(omega) * omega * coth(BETA * omega / 2) * (np.cos(omega*time) - 1)
