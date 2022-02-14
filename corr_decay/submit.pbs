@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -N SK_SuperOhmic
+#PBS -N SK_SubOhmic
 #PBS -l nodes=1:ppn=16:turtle
 #PBS -q batch
 #PBS -m abe
@@ -12,7 +12,7 @@ cd $PBS_O_WORKDIR
 baseDir=$PBS_O_WORKDIR
 echo $HOSTNAME
 echo $baseDir
-scratchDir="/scratch/tommylin/analytical/SK_SuperOhmic"
+scratchDir="/scratch/tommylin/analytical/SK_SubOhmic"
 
 mkdir -p $scratchDir
 cd $scratchDir
@@ -21,6 +21,6 @@ cd $baseDir
 cp -r *.py $scratchDir
 
 cd $scratchDir
-python3 SK_SuperOhmic.py
+python3 SK_SubOhmic.py
 cp -r * $baseDir
 
