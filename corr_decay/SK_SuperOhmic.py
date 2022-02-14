@@ -4,8 +4,6 @@ import math
 from scipy.fft import fft, ifft
 from scipy.integrate import simpson
 
-T = 2
-BETA = 1./T
 PI = 3.14159265359
 
 dt = 0.1
@@ -17,7 +15,7 @@ def coth(x):
     return (np.exp(x) + np.exp(-x))/(np.exp(x) - np.exp(-x))
 
 def J(omega):
-    return np.exp(-omega)
+    return 2 / PI * np.exp(-omega)
 
 def FQM_Re(omega, time):
     return 0.5 * J(omega) * omega * coth(BETA * omega / 2) * (np.cos(omega*time) - 1)
@@ -82,29 +80,32 @@ def write_spectrum(filename, FQM_w, FQM_I, DCL_I, ACL_I):
 
 # main
 
-fig, axs = plt.subplots(2)
-fig.suptitle("Convergence for MC's equivalent of Skinner's Super-Ohmic, T=2")
+fig, axs = plt.subplots(2, 2, figsize=(10, 6))
+fig.suptitle("Convergence for MC's equivalent of SK's Super-Ohmic  \n")
 
-axs[0].grid()
-axs[1].grid()
-axs[0].set(xlabel="Time", ylabel="C(t)")
-axs[1].set(xlabel="Time", ylabel="C(t)", yscale="log")
-# Calc FQM, DCL, ACL analytical correlation functions, and write to file
-for N in np.array([2, 10, 100, 1000, 10000]): 
-    domega = 20. / N
-    omega_range = np.arange(0.0+domega, 20.+domega, domega)
+for i in range(2):
+    T = 4**(i)
+    BETA = 1./T
+    
+    axs[i,0].grid()
+    axs[i,1].grid()
+    axs[i,0].set(xlabel="Time", ylabel=r"$\langle F(t) \rangle _{Re}$", title="T=%.0f" % T)
+    axs[i,1].set(xlabel="Time", ylabel=r"$\langle F(t) \rangle _{Re}$", yscale="log", title="T=%.0f" % T)
+    
+    # Calc FQM, DCL, ACL analytical correlation functions, and write to file
+    for N in np.array([1000, 10000]): 
+        domega = 20. / N
+        omega_range = np.arange(0.0+domega, 20.+domega, domega)
+        c_FQM_Re = np.zeros(0)
+        c_FQM_Im = np.zeros(0)
+        for t in t_range: 
+            c_FQM_Re = np.append(c_FQM_Re, corr_FQM_Re(t, omega_range))
+            c_FQM_Im = np.append(c_FQM_Im, corr_FQM_Im(t, omega_range))
 
-    c_FQM_Re = np.zeros(0)
-    c_FQM_Im = np.zeros(0)
-    for t in t_range: 
-        c_FQM_Re = np.append(c_FQM_Re, corr_FQM_Re(t, omega_range))
-        c_FQM_Im = np.append(c_FQM_Im, corr_FQM_Im(t, omega_range))
+        axs[i,0].plot(t_range, c_FQM_Re, label="NB=%.0f" % N)
+        axs[i,1].plot(t_range, c_FQM_Re, label="NB=%.0f" % N)
+    axs[i,0].legend()
+    axs[i,1].legend()
 
-    axs[0].plot(t_range, c_FQM_Re, label="NB=%.1f" % N)
-    axs[1].plot(t_range, c_FQM_Re, label="NB=%.1f" % N)
-
-
-axs[0].legend()
-axs[1].legend()
 fig.tight_layout()
-fig.savefig("Skinner_SuperOhmic_T=2.png")
+fig.savefig("Skinner_SuperOhmic.png")
