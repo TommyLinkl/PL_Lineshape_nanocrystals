@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -N spectrum_T=16_short
+#PBS -N nc_corr
 #PBS -l nodes=1:ppn=16:turtle
 #PBS -q batch
 #PBS -m abe
