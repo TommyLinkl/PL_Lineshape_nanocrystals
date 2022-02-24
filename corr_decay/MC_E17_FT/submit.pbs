@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#PBS -N oscillating_T\=1
-#PBS -l nodes=1:ppn=16:turtle
+#PBS -N linewidth_E17
+#PBS -l nodes=1:ppn=16:chicken
 #PBS -q batch
 #PBS -m abe
 #PBS -M tommy_lin@berkeley.edu
@@ -12,7 +12,7 @@ cd $PBS_O_WORKDIR
 baseDir=$PBS_O_WORKDIR
 echo $HOSTNAME
 echo $baseDir
-scratchDir="/scratch/tommylin/analytical/oscillating_T\=1"
+scratchDir="/scratch/tommylin/analytical/linewidth_E17"
 
 mkdir -p $scratchDir
 cd $scratchDir
@@ -21,6 +21,6 @@ cd $baseDir
 cp -r *.py $scratchDir
 
 cd $scratchDir
-python3 E17_oscillating_T\=1.py
+python3 linewidth_E17.py
 cp -r * $baseDir
 
