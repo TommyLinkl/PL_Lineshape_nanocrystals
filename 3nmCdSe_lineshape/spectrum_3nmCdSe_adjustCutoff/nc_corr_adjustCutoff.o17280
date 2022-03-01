@@ -1,0 +1,43 @@
+ 
+:: initializing oneAPI environment ...
+   17280.pippen.cchem.berkeley.edu.SC: BASH_VERSION = 4.2.46(2)-release
+:: advisor -- latest
+:: ccl -- latest
+:: clck -- latest
+:: compiler -- latest
+:: dal -- latest
+:: debugger -- latest
+:: dev-utilities -- latest
+:: dnnl -- latest
+:: dpcpp-ct -- latest
+:: dpl -- latest
+:: inspector -- latest
+:: intelpython -- latest
+:: ipp -- latest
+:: ippcp -- latest
+:: ipp -- latest
+:: itac -- latest
+:: mkl -- latest
+:: mpi -- latest
+:: tbb -- latest
+:: vpl -- latest
+:: vtune -- latest
+:: oneAPI environment initialized ::
+ 
+compute-0-23.local
+/home/tommylin/PL_Lineshape_nanocrystals/3nmCdSe_lineshape/spectrum_3nmCdSe_adjustCutoff
+DONE reading
+DONE calc_dephasing_F_E17
+reorg_E = 0.000000 J, 0.031958 eV 
+
+DONE calc_delta_corr_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.031958 eV 
+
+E_shift: 0.000000 J, 2.230497 eV
+w_shift in Hz: 3388721611383376.000000
+E_shift: 0.000000 J, 2.230497 eV
+w_shift in Hz: 3388721611383376.000000
+E_shift: 0.000000 J, 2.230497 eV
+w_shift in Hz: 3388721611383376.000000
+DONE spectrum_E17
