@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#PBS -N nc_corr_RT
+#PBS -l nodes=1:ppn=16:chicken
+#PBS -q batch
+#PBS -m abe
+#PBS -M tommy_lin@berkeley.edu
+
+source /opt/intel/oneapi/setvars.sh
+
+cd $PBS_O_WORKDIR
+baseDir=$PBS_O_WORKDIR
+echo $HOSTNAME
+echo $baseDir
+scratchDir="/scratch/tommylin/analytical/3nmCdSe_spectrum_RT"
+
+mkdir -p $scratchDir
+cd $scratchDir
+rm -r * 
+cd $baseDir
+cp -r * $scratchDir
+
+cd $scratchDir
+python3 corr_nc.py
+cp -r * $baseDir
+

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#PBS -N FQM_NEW_Ohmic
+#PBS -l nodes=1:ppn=16:turtle
+#PBS -q batch
+#PBS -m abe
+#PBS -M tommy_lin@berkeley.edu
+
+source /opt/intel/oneapi/setvars.sh
+
+cd $PBS_O_WORKDIR
+baseDir=$PBS_O_WORKDIR
+echo $HOSTNAME
+echo $baseDir
+scratchDir="/scratch/tommylin/analytical/FQM_NEW_Ohmic"
+
+mkdir -p $scratchDir
+cd $scratchDir
+rm -r * 
+cd $baseDir
+cp -r *.py $scratchDir
+
+cd $scratchDir
+python3 Ohmic.py
+cp -r * $baseDir
+
