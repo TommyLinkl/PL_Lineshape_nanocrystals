@@ -226,7 +226,7 @@ write_spectrum("3nmCdSe_spectrum_E17_cutoff3.dat", spectrum_w_E17_cutoff3, spect
 
 # plotting
 fig, axs = plt.subplots(3,3, figsize=(11,11))
-fig.suptitle(r"The dephasing function and spectra at different cutoff points, E17 model, 3nmCdSe at T=300K")
+fig.suptitle(r"The dephasing function and spectra, 3nmCdSe at T=0K")
 
 for i in range(3): 
     for j in range(3): 

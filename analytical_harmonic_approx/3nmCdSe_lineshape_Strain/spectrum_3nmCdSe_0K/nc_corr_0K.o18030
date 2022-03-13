@@ -1,0 +1,41 @@
+ 
+:: initializing oneAPI environment ...
+   18030.pippen.cchem.berkeley.edu.SC: BASH_VERSION = 4.2.46(2)-release
+:: advisor -- latest
+:: ccl -- latest
+:: clck -- latest
+:: compiler -- latest
+:: dal -- latest
+:: debugger -- latest
+:: dev-utilities -- latest
+:: dnnl -- latest
+:: dpcpp-ct -- latest
+:: dpl -- latest
+:: inspector -- latest
+:: intelpython -- latest
+:: ipp -- latest
+:: ippcp -- latest
+:: ipp -- latest
+:: itac -- latest
+:: mkl -- latest
+:: mpi -- latest
+:: tbb -- latest
+:: vpl -- latest
+:: vtune -- latest
+:: oneAPI environment initialized ::
+ 
+compute-0-21.local
+/home/tommylin/PL_Lineshape_nanocrystals/analytical_harmonic_approx/3nmCdSe_lineshape_Strain/spectrum_3nmCdSe_0K
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.050192 eV 
+
+E_shift: 0.000000 J, 2.248731 eV
+w_shift in Hz: 3416424132775987.500000
+E_shift: 0.000000 J, 2.248731 eV
+w_shift in Hz: 3416424132775987.500000
+E_shift: 0.000000 J, 2.248731 eV
+w_shift in Hz: 3416424132775987.500000
+DONE spectrum_E17
+DONE calculating FWHM

@@ -1,0 +1,188 @@
+ 
+:: initializing oneAPI environment ...
+   17554.pippen.cchem.berkeley.edu.SC: BASH_VERSION = 4.2.46(2)-release
+:: advisor -- latest
+:: ccl -- latest
+:: clck -- latest
+:: compiler -- latest
+:: dal -- latest
+:: debugger -- latest
+:: dev-utilities -- latest
+:: dnnl -- latest
+:: dpcpp-ct -- latest
+:: dpl -- latest
+:: inspector -- latest
+:: intelpython -- latest
+:: ipp -- latest
+:: ippcp -- latest
+:: ipp -- latest
+:: itac -- latest
+:: mkl -- latest
+:: mpi -- latest
+:: tbb -- latest
+:: vpl -- latest
+:: vtune -- latest
+:: oneAPI environment initialized ::
+ 
+compute-0-0.local
+/home/tommylin/PL_Lineshape_nanocrystals/analytical_harmonic_approx/3nmCdSe_lineshape/spectrum_3nmCdSe_MLS_undone
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.031958 eV 
+
+E_shift: 0.000000 J, 2.230497 eV
+w_shift in Hz: 3388721611383376.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.029447 eV 
+
+E_shift: 0.000000 J, 2.253439 eV
+w_shift in Hz: 3423576310019379.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.060051 eV 
+
+E_shift: 0.000000 J, 2.286522 eV
+w_shift in Hz: 3473838371436802.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.089789 eV 
+
+E_shift: 0.000000 J, 2.317167 eV
+w_shift in Hz: 3520396892014038.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.071957 eV 
+
+E_shift: 0.000000 J, 2.321606 eV
+w_shift in Hz: 3527140798574465.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.053281 eV 
+
+E_shift: 0.000000 J, 2.303070 eV
+w_shift in Hz: 3498980027031567.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.075180 eV 
+
+E_shift: 0.000000 J, 2.340982 eV
+w_shift in Hz: 3556577333685442.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.065601 eV 
+
+E_shift: 0.000000 J, 2.331976 eV
+w_shift in Hz: 3542894526919859.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.040840 eV 
+
+E_shift: 0.000000 J, 2.337905 eV
+w_shift in Hz: 3551902968298359.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.052602 eV 
+
+E_shift: 0.000000 J, 2.350599 eV
+w_shift in Hz: 3571187877187879.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.047382 eV 
+
+E_shift: 0.000000 J, 2.346446 eV
+w_shift in Hz: 3564878658835309.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.011213 eV 
+
+E_shift: 0.000000 J, 2.337569 eV
+w_shift in Hz: 3551393056376640.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.020420 eV 
+
+E_shift: 0.000000 J, 2.348624 eV
+w_shift in Hz: 3568187736538364.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.041401 eV 
+
+E_shift: 0.000000 J, 2.372855 eV
+w_shift in Hz: 3605001369014652.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.050614 eV 
+
+E_shift: 0.000000 J, 2.382569 eV
+w_shift in Hz: 3619759101512534.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.016130 eV 
+
+E_shift: 0.000000 J, 2.360733 eV
+w_shift in Hz: 3586584533879275.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.060004 eV 
+
+E_shift: 0.000000 J, 2.406416 eV
+w_shift in Hz: 3655989597458196.500000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.019272 eV 
+
+E_shift: 0.000000 J, 2.366000 eV
+w_shift in Hz: 3594587295731657.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.038806 eV 
+
+E_shift: 0.000000 J, 2.399366 eV
+w_shift in Hz: 3645279070747292.000000
+DONE spectrum_E17
+DONE reading
+DONE calc_dephasing_F_E17
+DONE erf_multiplication
+reorg_E = 0.000000 J, 0.032710 eV 
+
+E_shift: 0.000000 J, 2.406015 eV
+w_shift in Hz: 3655379612134168.500000
+DONE spectrum_E17
