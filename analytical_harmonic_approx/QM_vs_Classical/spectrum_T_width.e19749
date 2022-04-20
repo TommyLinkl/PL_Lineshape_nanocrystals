@@ -1,0 +1,23 @@
+rm: cannot remove ‘*’: No such file or directory
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:251: RuntimeWarning: divide by zero encountered in double_scalars
+  BETA = 1./ (KB * T)
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:81: RuntimeWarning: divide by zero encountered in double_scalars
+  BETA = 1 / (KB * T)
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:15: RuntimeWarning: invalid value encountered in double_scalars
+  return (np.exp(x) + np.exp(-x))/(np.exp(x) - np.exp(-x))
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:202: RuntimeWarning: divide by zero encountered in double_scalars
+  BETA = 1./ (KB * T)
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:301: RuntimeWarning: divide by zero encountered in double_scalars
+  BETA = 1./ (KB * T)
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:95: RuntimeWarning: divide by zero encountered in double_scalars
+  BETA = 1 / (KB * T)
+/state/partition1/tommylin/spectrum_nanocrystal/spectrum_T_width/allFunc.py:162: RuntimeWarning: invalid value encountered in true_divide
+  I_norm = I / I.max()
+spectrum_T_width.py:76: RuntimeWarning: divide by zero encountered in true_divide
+  axs[1,1].plot(1/Temp_range, linewidthQM_E17_range*1000, "*-", label="QM, E17")
+spectrum_T_width.py:77: RuntimeWarning: divide by zero encountered in true_divide
+  axs[1,1].plot(1/Temp_range, linewidthCL_range*1000, "*-", label="Classical")
+spectrum_T_width.py:84: RuntimeWarning: divide by zero encountered in true_divide
+  axs[2,1].plot(1/Temp_range, freqShiftQM_E17_range*1000, "*-", label="QM, E17")
+spectrum_T_width.py:85: RuntimeWarning: divide by zero encountered in true_divide
+  axs[2,1].plot(1/Temp_range, freqShiftCL_range*1000, "*-", label="Classical")

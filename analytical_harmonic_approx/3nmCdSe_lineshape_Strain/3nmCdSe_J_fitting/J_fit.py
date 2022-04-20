@@ -50,6 +50,7 @@ def calc_y(w_range, V, gaussian_std, x_range):
 phonon_w = read_ph("w.dat")[6:]
 coupling = read_nacoupling("Vklq-diabatic.dat")
 g = open("J_fitting.dat", "w")
+h = open("3nmCdSe_spectralDensity.dat", "w")
 
 n_count = 3
 
@@ -61,6 +62,10 @@ for n in range(20):
     V = coupling[6:, n]
     x = np.arange(0, 10, 0.01)    # all in units of THz
     y = calc_y(phonon_w, V, a, x)
+
+    if n==0:
+        for l in range(len(x)):
+            h.write("%f    %f \n" % (x[l], y[l]))
 
     popt, pcov = curve_fit(J, x, y) 
     print(popt)
@@ -85,5 +90,6 @@ for n in range(20):
         axs[n].legend()
 
 g.close()
+h.close()
 fig.tight_layout()
 fig.savefig("Spectral_density_fitting_3nmCdSe.png")
