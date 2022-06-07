@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#PBS -N Langevin_3nmCdSe
+#PBS -l nodes=1:ppn=16:turtle
+#PBS -q batch
+#PBS -m abe
+#PBS -M tommy_lin@berkeley.edu
+
+source /opt/intel/oneapi/setvars.sh
+export OMP_NUM_THREADS=16
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+cd $PBS_O_WORKDIR
+baseDir=$PBS_O_WORKDIR
+echo $HOSTNAME
+echo $baseDir
+scratchDir="/scratch/tommylin/LAMMPS_Langevin_3nmCdSe"
+
+mkdir -p $scratchDir
+cd $scratchDir
+rm -r * 
+cd $baseDir
+cp -r * $scratchDir
+
+cd $scratchDir
+mpirun -np 16 /home/tommylin/lammps-29Sep2021/src/lmp_mpi -in in.sw_langevin > run_lammps_langevin.dat
+cp -r * $baseDir
+
