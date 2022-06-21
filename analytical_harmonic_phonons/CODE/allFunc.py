@@ -46,6 +46,47 @@ def read_Vklq(filename, nPhonon, nExc, shrink):
     # print(coupling*shrink)
     return (coupling*shrink)      # in sqrt(J) / s
 
+def rescale_Vklq(w_range, coupling, ac_low, ac_upper, alpha, op_low, op_upper, beta, \
+    int_low, int_upper, gamma, new_V_filename):
+    # w_range doesn't include the 6 zero-frequency phonons
+    # coupling is a 1D array of length nPhonon. Only V_00 is kept in this input. Units: sqrt(J) / s
+    rescaled_coupling = np.array(coupling)
+    f = open(new_V_filename, "w")
+    f.write("0 0 0 0.0\n1 0 0 0.0\n2 0 0 0.0\n3 0 0 0.0\n4 0 0 0.0\n5 0 0 0.0\n")
+    for i in range(len(w_range)): 
+        if (w_range[i]>=ac_low*1e12*2*PI) and (w_range[i]<=ac_upper*1e12*2*PI): 
+            rescaled_coupling[i] *= alpha
+        if (w_range[i]>=int_low*1e12*2*PI) and (w_range[i]<=int_upper*1e12*2*PI): 
+            rescaled_coupling[i] *= gamma
+        if (w_range[i]>=op_low*1e12*2*PI) and (w_range[i]<=op_upper*1e12*2*PI): 
+            rescaled_coupling[i] *= beta
+        f.write("%d 0 0 %.16f\n" % (i+6, rescaled_coupling[i]))
+    f.close()
+    return rescaled_coupling      # in sqrt(J) / s
+
+def delete_modes(w_filename, V_filename, phonon_delete_range, new_w_filename, new_V_filename): 
+    all_w = read_w(w_filename)
+    all_coupling = read_Vklq(V_filename, len(all_w), 1, 1.0)
+    
+    new_w = np.delete(all_w, phonon_delete_range)
+    new_coupling = np.delete(all_coupling, phonon_delete_range)
+    print(np.shape(new_w))
+    print(np.shape(new_coupling))
+
+    f = open(new_w_filename, "w")
+    for i in range(len(new_w)):
+        f.write("%d %.16f\n" % (i,new_w[i]/(2*PI*1e12)))
+    f.close()
+
+    f = open(new_V_filename, "w")
+    for i in range(len(new_coupling)): 
+        f.write("%d 0 0 %.16f\n" % (i, new_coupling[i]))
+    f.close()
+    return
+
+
+
+
 def reorg_E(delta_range, omega_range):
     E = np.sum(0.5 * omega_range**2 * delta_range**2)
     print("reorg_E = %f J, %f eV" % (E, E*JTOEV))
@@ -184,7 +225,8 @@ def calc_freqShift(spec_w, spec_I, exciton_E):
     max_freq = spec_w[max_index]
     return (max_freq - exciton_E)
 
-def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filename, coupling_filename, I_file, FWHM_file, shrink):
+def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filename, \
+    coupling_filename, I_file, FWHM_file, shrink):
     # give T in K, t_range in s, w_range in eV, cutoff in s, exc_E in J
 
     dt = t_range[1] - t_range[0]      # assuming equal spacing
@@ -196,7 +238,7 @@ def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filen
     phonons = phonons[6:]
     V = coupling[6:, 0]
     delta_range = (V) / phonons**2
-    print("\nDONE reading")
+    print("DONE reading")
 
     # Calculating the dephasing function
     (F_t_Re, F_t_Im) = calc_dephasing_F_E17(t_range, delta_range, phonons, T)
@@ -231,7 +273,7 @@ def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filen
     write_spectrum(I_file, spectrum_w, spectrum_I)
 
     (FWHM, l_index, r_index) = calc_FWHM(spectrum_w, spectrum_I)
-    print("DONE calculating FWHM")
+    print("DONE calculating FWHM\n")
     # write_FWHM(FWHM_file, spectrum_w, spectrum_I, l_index, r_index)
 
     freq_shift = calc_freqShift(spectrum_w, spectrum_I, exc_E)
