@@ -251,17 +251,18 @@ def calc_freqShift(spec_w, spec_I, exciton_E):
     max_freq = spec_w[max_index]
     return (max_freq - exciton_E)
 
-def calc_spectrum_QM_E17(T, totNExc, excIndex, t_range, w_range, cutoff, slope, exc_E, phonon_filename, \
+def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filename, \
     coupling_filename, I_file, FWHM_file, shrink):
     # give T in K, t_range in s, w_range in eV, cutoff in s, exc_E in J
 
     dt = t_range[1] - t_range[0]      # assuming equal spacing
 
     # Reading frequency and coupling matrix element data
+    nExc = 1
     phonons = read_w(phonon_filename)
-    coupling = read_Vklq(coupling_filename, len(phonons), totNExc, shrink)[:,excIndex]
+    coupling = read_Vklq(coupling_filename, len(phonons), nExc, shrink)
     phonons = phonons[6:]
-    V = coupling[6:]
+    V = coupling[6:, 0]
     delta_range = (V) / phonons**2
     print("DONE reading")
 
@@ -298,7 +299,7 @@ def calc_spectrum_QM_E17(T, totNExc, excIndex, t_range, w_range, cutoff, slope, 
     write_spectrum(I_file, spectrum_w, spectrum_I)
 
     (FWHM, l_index, r_index) = calc_FWHM(spectrum_w, spectrum_I)
-    print("DONE calculating FWHM")
+    print("DONE calculating FWHM\n")
     # write_FWHM(FWHM_file, spectrum_w, spectrum_I, l_index, r_index)
 
     freq_shift = calc_freqShift(spectrum_w, spectrum_I, exc_E)

@@ -46,76 +46,9 @@ def read_Vklq(filename, nPhonon, nExc, shrink):
     # print(coupling*shrink)
     return (coupling*shrink)      # in sqrt(J) / s
 
-def rescale_Vklq(w_range, coupling, ac_low, ac_upper, alpha, op_low, op_upper, beta, \
-    int_low, int_upper, gamma, new_V_filename):
-#################################################
-## BUG!!!
-#################################################
-    # w_range doesn't include the 6 zero-frequency phonons
-    # coupling is a 1D array of length nPhonon. Only V_00 is kept in this input. Units: sqrt(J) / s
-    rescaled_coupling = np.array(coupling)
-    f = open(new_V_filename, "w")
-    f.write("0 0 0 0.0\n1 0 0 0.0\n2 0 0 0.0\n3 0 0 0.0\n4 0 0 0.0\n5 0 0 0.0\n")
-    for i in range(len(w_range)): 
-        if (w_range[i]>=ac_low*1e12*2*PI) and (w_range[i]<=ac_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= alpha
-        if (w_range[i]>=int_low*1e12*2*PI) and (w_range[i]<=int_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= gamma
-        if (w_range[i]>=op_low*1e12*2*PI) and (w_range[i]<=op_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= beta
-        f.write("%d 0 0 %.16f\n" % (i+6, rescaled_coupling[i]))
-    f.close()
-    return rescaled_coupling      # in sqrt(J) / s
-
-def NEW_rescale_Vklq(w_range, coupling, a1_lower, a1_upper, a1, a2_lower, a2_upper, a2, a3_lower, a3_upper, a3, a4_lower, a4_upper, a4, a5_lower, a5_upper, a5, b_lower, b_upper, b, new_V_filename):
-    # w_range doesn't include the 6 zero-frequency phonons
-    # coupling is a 1D array of length nPhonon. Only V_00 is kept in this input. Units: sqrt(J) / s
-    rescaled_coupling = np.reshape(coupling, -1)
-    f = open(new_V_filename, "w")
-    f.write("0 0 0 0.0\n1 0 0 0.0\n2 0 0 0.0\n3 0 0 0.0\n4 0 0 0.0\n5 0 0 0.0\n")
-    for i in range(6, len(w_range)): 
-        if (w_range[i]>=a1_lower*1e12*2*PI) and (w_range[i]<a1_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= a1
-        if (w_range[i]>=a2_lower*1e12*2*PI) and (w_range[i]<a2_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= a2
-        if (w_range[i]>=a3_lower*1e12*2*PI) and (w_range[i]<a3_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= a3
-        if (w_range[i]>=a4_lower*1e12*2*PI) and (w_range[i]<a4_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= a4
-        if (w_range[i]>=a5_lower*1e12*2*PI) and (w_range[i]<a5_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= a5
-        if (w_range[i]>=b_lower*1e12*2*PI) and (w_range[i]<b_upper*1e12*2*PI): 
-            rescaled_coupling[i] *= b
-        f.write("%d 0 0 %.16f\n" % (i, rescaled_coupling[i]))
-    f.close()
-    return rescaled_coupling      # in sqrt(J) / s
-
-def delete_modes(w_filename, V_filename, phonon_delete_range, new_w_filename, new_V_filename): 
-    all_w = read_w(w_filename)
-    all_coupling = read_Vklq(V_filename, len(all_w), 1, 1.0)
-    
-    new_w = np.delete(all_w, phonon_delete_range)
-    new_coupling = np.delete(all_coupling, phonon_delete_range)
-    print(np.shape(new_w))
-    print(np.shape(new_coupling))
-
-    f = open(new_w_filename, "w")
-    for i in range(len(new_w)):
-        f.write("%d %.16f\n" % (i,new_w[i]/(2*PI*1e12)))
-    f.close()
-
-    f = open(new_V_filename, "w")
-    for i in range(len(new_coupling)): 
-        f.write("%d 0 0 %.16f\n" % (i, new_coupling[i]))
-    f.close()
-    return
-
-
-
-
 def reorg_E(delta_range, omega_range):
     E = np.sum(0.5 * omega_range**2 * delta_range**2)
-    print("reorg_E = %f J, %f eV, %6f meV" % (E, E*JTOEV, E*JTOEV*1000))
+    print("reorg_E = %f J, %f eV" % (E, E*JTOEV))
     return E   # In units of J
 
 def calc_dephasing_F_E17(t_range, delta_range, omega_range, T): 
@@ -251,19 +184,19 @@ def calc_freqShift(spec_w, spec_I, exciton_E):
     max_freq = spec_w[max_index]
     return (max_freq - exciton_E)
 
-def calc_spectrum_QM_E17(T, totNExc, excIndex, t_range, w_range, cutoff, slope, exc_E, phonon_filename, \
-    coupling_filename, I_file, FWHM_file, shrink):
+def calc_spectrum_QM_E17(T, t_range, w_range, cutoff, slope, exc_E, phonon_filename, coupling_filename, I_file, FWHM_file, shrink):
     # give T in K, t_range in s, w_range in eV, cutoff in s, exc_E in J
 
     dt = t_range[1] - t_range[0]      # assuming equal spacing
 
     # Reading frequency and coupling matrix element data
+    nExc = 1
     phonons = read_w(phonon_filename)
-    coupling = read_Vklq(coupling_filename, len(phonons), totNExc, shrink)[:,excIndex]
+    coupling = read_Vklq(coupling_filename, len(phonons), nExc, shrink)
     phonons = phonons[6:]
-    V = coupling[6:]
+    V = coupling[6:, 0]
     delta_range = (V) / phonons**2
-    print("DONE reading")
+    print("\nDONE reading")
 
     # Calculating the dephasing function
     (F_t_Re, F_t_Im) = calc_dephasing_F_E17(t_range, delta_range, phonons, T)
@@ -292,7 +225,6 @@ def calc_spectrum_QM_E17(T, totNExc, excIndex, t_range, w_range, cutoff, slope, 
 
     # FT the dephasing functions to obtain the spectrum from the dipole-dipole correlation function
     delta_E_E17 = exc_E   #  - reorg_E(delta_range, phonons)    # in J
-    reorg_E(delta_range, phonons) 
     (spectrum_w, spectrum_I) = spectrum(delta_E_E17, t_range, F_t_Re_erf, F_t_Im_erf, w_range)
     print("DONE spectrum")
     write_spectrum(I_file, spectrum_w, spectrum_I)
